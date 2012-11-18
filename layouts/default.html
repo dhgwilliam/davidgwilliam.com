@@ -19,9 +19,14 @@
         <em><%= @item[:email] %></em>
 			</div>
 			<hr>
-      <div id="content" class="grid_8 prefix_2 suffix_2 alpha">
+      <div id="content" class="grid_8 prefix_2 suffix_2">
+        <div id="news">
+          <% @news_items = @site.items.reject! { |item| item[:type] != "news" } %>
+          <% @news_items.sort_by! { |item| Date.parse(item[:date]) } %>
+          <%= @news_items.last.raw_content %>
+        </div>
         <hr />
-        <div class="grid_6 prefix_1 description">
+        <div class="description prefix_1 suffix_1">
           <h2>My name is David Gwilliam. I'm a DevOps professional and an amateur Ruby developer.</h2>
           <p>I live, sleep, and breathe the internet.</p>
         </div>
@@ -42,23 +47,16 @@
         </ul>
       </div>
 			<hr />
-      <div id="footer" class="grid_8 prefix_2 suffix_2 omega">
+      <div id="footer" class="grid_8 prefix_2 suffix_2">
         <p>&copy; Copyright <%= @item[:full_name] %> 2012 </p>
       </div>
 		</div>
 		<script type="text/javascript" charset="utf-8">
 			document.getElementsByTagName('body')[0].className += ' js-enabled';
 		</script>
-		<script src="js/jquery-1_3_2.js" type="text/javascript" charset="utf-8"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/gallery.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/init-gallery.js" type="text/javascript" charset="utf-8"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $.getJSON("http://search.twitter.com/search.json?q=from:dhgwilliam&page=1&rpp=1", function(data) {
-          alert(data);
-          });
-      });
-    </script>
 	</body>
 </html>
 

@@ -21,10 +21,14 @@ compile '/javascript/*' do
   # don’t filter or layout
 end
 
+compile '/news/*' do
+end
+
 compile '*' do
   if item.binary?
     # don’t filter binary items
   else
+    filter :kramdown
     filter :erb
     layout 'default'
   end
@@ -36,6 +40,9 @@ end
 
 route '/stylesheet/*' do
   "/css/#{item.identifier.split('/').last}.css"
+end
+
+route '/news/*' do
 end
 
 route '*' do
