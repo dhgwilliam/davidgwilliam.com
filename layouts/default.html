@@ -1,25 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-	"http://www.w3.org/TR/html4/strict.dtd">
-<html>
-	<head>
-		<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <title><%= @item[:title] %></title>
-		<link rel="stylesheet" href="css/960.css" type="text/css" media="screen"> 
-		<link rel="stylesheet" href="css/text.css" type="text/css" media="screen"> 
-		<link rel="stylesheet" href="css/reset.css" type="text/css" media="screen"> 
-		<link rel="stylesheet" href="css/screen.css" type="text/css" media="screen"> 
-		<script type="text/javascript" src="http://use.typekit.com/upu8ots.js"></script>
-		<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-	</head>
-	<body>
-		<div id="container" class="container_12">
-			<div id="header" class="grid_12">
-        <a href="/"><img src="http://a2.twimg.com/profile_images/215100782/and_bigger.jpg" /></a><hr>
-        <strong><a href="/"><%= @item[:full_name] %></a></strong><br />
-        <em><%= @item[:email] %></em>
-			</div>
-			<hr>
-      <div id="content" class="grid_8 prefix_2 suffix_2">
+<%= render 'header' %>
         <div id="news">
           <% @news_items = @site.items.reject! { |item| item[:type] != "news" } %>
           <% @news_items.sort_by! { |item| Date.parse(item[:date]) } %>
@@ -32,7 +11,7 @@
         </div>
       </div>
       <hr />
-      <div id="linklist" class="grid_8 prefix_2 suffix_2">
+      <div id="linklist" class="prefix_1 suffix_1">
         <ul>
           <li><a href="http://www.twitter.com/dhgwilliam">Twitter</a></li>
           <li><a href="http://copygr.am/dhgwilliam/">Instagram</a></li>
@@ -46,17 +25,4 @@
           <li><a href="http://www.linkedin.com/pub/david-gwilliam/5/3b6/421">LinkedIn</a></li>
         </ul>
       </div>
-			<hr />
-      <div id="footer" class="grid_8 prefix_2 suffix_2">
-        <p>&copy; Copyright <%= @item[:full_name] %> 2012 </p>
-      </div>
-		</div>
-		<script type="text/javascript" charset="utf-8">
-			document.getElementsByTagName('body')[0].className += ' js-enabled';
-		</script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/gallery.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/init-gallery.js" type="text/javascript" charset="utf-8"></script>
-	</body>
-</html>
-
+<%= render 'footer' %>
