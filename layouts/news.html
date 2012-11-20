@@ -1,0 +1,14 @@
+<%= render 'header', :title => 'News' %>
+      <div id="content" class="grid_8 prefix_2 suffix_2">
+        <div id="news">
+          <% @news_items = @site.items.reject! { |item| item[:type] != "news" } %>
+          <% if @news_items %>
+            <% @news_items.sort_by! { |item| Date.parse(item[:date]) } %>
+            <% @news_items.each do |news| %>
+              <h2><%= news[:title] %></h2>
+              <%= news.raw_content %>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+<%= render 'footer' %>

@@ -14,14 +14,13 @@
 #   because “*” matches zero or more characters.
 
 compile '/stylesheet/*' do
-  # don’t filter or layout
 end
 
 compile '/javascript/*' do
-  # don’t filter or layout
 end
 
-compile '/news/*' do
+compile '/news/*/' do
+
 end
 
 compile '*' do
@@ -30,7 +29,7 @@ compile '*' do
   else
     filter :kramdown
     filter :erb
-    layout 'default'
+    layout ( item[:layout] || 'default' )
   end
 end
 
@@ -40,9 +39,6 @@ end
 
 route '/stylesheet/*' do
   "/css/#{item.identifier.split('/').last}.css"
-end
-
-route '/news/*' do
 end
 
 route '*' do

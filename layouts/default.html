@@ -1,8 +1,12 @@
-<%= render 'header' %>
+<%= render 'header', :title => 'David Gwilliam - DevOps professional and amateur Ruby developer - Portland, OR' %>
+      <div id="content" class="grid_8 prefix_2 suffix_2">
         <div id="news">
-          <% @news_items = @site.items.reject! { |item| item[:type] != "news" } %>
-          <% @news_items.sort_by! { |item| Date.parse(item[:date]) } %>
-          <%= @news_items.last.raw_content %>
+          <% @news_items = @site.items %>
+          <% @news_items.reject! { |item| item[:type] != 'news' } %>
+          <% if @news_items %>
+            <% @news_items.sort_by! { |item| Date.parse(item[:date]) } %>
+            <%= @news_items.last.raw_content %>
+          <% end %>
         </div>
         <hr />
         <div class="description prefix_1 suffix_1">
