@@ -7,8 +7,8 @@
             <% @news_items.each do |news| %>
               <div id="<%= news.identifier.split('/').last %>">
                 <h2><%= news[:title] %></h2>
-                <%= news.raw_content %>
-                <br />
+                <%= news.compiled_content %>
+                <hr>
               </div>
             <% end %>
           <% end %>
